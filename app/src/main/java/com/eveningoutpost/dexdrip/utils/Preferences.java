@@ -1144,6 +1144,7 @@ public class Preferences extends BasePreferenceActivity implements SearchPrefere
 
             final Preference nsFollowDownload = findPreference("nsfollow_download_treatments");
             final Preference nsFollowUrl = findPreference("nsfollow_url");
+            final Preference nsFollowGrace = findPreference("nsfollow_grace");
             try {
                 nsFollowUrl.setOnPreferenceChangeListener((preference, newValue) -> {
                     NightscoutFollow.resetInstance();
@@ -1504,6 +1505,7 @@ public class Preferences extends BasePreferenceActivity implements SearchPrefere
                 try {
                     collectionCategory.removePreference(nsFollowUrl);
                     collectionCategory.removePreference(nsFollowDownload);
+                    collectionCategory.removePreference(nsFollowGrace);
                 } catch (Exception e) {
                     //
                 }
@@ -2130,6 +2132,7 @@ public class Preferences extends BasePreferenceActivity implements SearchPrefere
                     if (collectionType == DexCollectionType.NSFollow) {
                         collectionCategory.addPreference(nsFollowUrl);
                         collectionCategory.addPreference(nsFollowDownload);
+                        collectionCategory.addPreference(nsFollowGrace);
                     }
 
 
