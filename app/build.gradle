@@ -273,7 +273,7 @@ dependencies {
     implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
     implementation 'org.slf4j:slf4j-api:1.7.7'
     implementation 'org.apache.commons:commons-math3:3.6'
-    implementation('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
         transitive = true
     }
     implementation 'uk.com.robust-it:cloning:1.9.5'
