@@ -2,11 +2,12 @@ package com.eveningoutpost.dexdrip;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.support.wearable.watchface.WatchFaceStyle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+
+import androidx.core.content.ContextCompat;
 
 import com.eveningoutpost.dexdrip.Models.JoH;
 import com.ustwo.clockwise.common.WatchMode;

@@ -17,9 +17,10 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+
+import androidx.annotation.NonNull;
 
 import com.eveningoutpost.dexdrip.AddCalibration;
 import com.eveningoutpost.dexdrip.DoubleCalibrationActivity;

@@ -1,9 +1,9 @@
 package com.eveningoutpost.dexdrip.ui.activities;
 
-import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.databinding.ObservableField;
 
 import com.eveningoutpost.dexdrip.BaseAppCompatActivity;
 import com.eveningoutpost.dexdrip.Models.JoH;

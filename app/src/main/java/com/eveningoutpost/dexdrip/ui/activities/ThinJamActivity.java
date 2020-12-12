@@ -5,15 +5,10 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.databinding.Observable;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableField;
-import android.databinding.ObservableList;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.ParcelUuid;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -21,6 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.Observable;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableList;
 
 import com.eveningoutpost.dexdrip.BR;
 import com.eveningoutpost.dexdrip.MegaStatus;

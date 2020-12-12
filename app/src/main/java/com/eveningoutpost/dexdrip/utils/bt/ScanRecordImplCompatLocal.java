@@ -1,8 +1,9 @@
 package com.eveningoutpost.dexdrip.utils.bt;
 
 import android.os.ParcelUuid;
-import android.support.annotation.Nullable;
 import android.util.SparseArray;
+
+import androidx.annotation.Nullable;
 
 import com.polidea.rxandroidble2.scan.ScanRecord;
 

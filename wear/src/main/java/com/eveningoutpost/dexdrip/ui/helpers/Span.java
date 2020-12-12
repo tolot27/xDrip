@@ -1,10 +1,11 @@
 package com.eveningoutpost.dexdrip.ui.helpers;
 
-import android.support.annotation.ColorInt;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
+
+import androidx.annotation.ColorInt;
 
 /**
  * jamorham

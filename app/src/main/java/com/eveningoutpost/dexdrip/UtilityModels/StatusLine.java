@@ -1,6 +1,6 @@
 package com.eveningoutpost.dexdrip.UtilityModels;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.eveningoutpost.dexdrip.Models.Accuracy;
 import com.eveningoutpost.dexdrip.Models.BgReading;

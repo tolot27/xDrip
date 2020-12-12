@@ -7,9 +7,10 @@ import android.content.ContextWrapper;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.annotation.StringRes;
-import android.support.multidex.MultiDexApplication;
 import android.util.Log;
+
+import androidx.annotation.StringRes;
+import androidx.multidex.MultiDexApplication;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
@@ -34,11 +35,13 @@ import com.eveningoutpost.dexdrip.watch.thinjam.BlueJayEntry;
 import com.eveningoutpost.dexdrip.webservices.XdripWebService;
 import com.evernote.android.job.JobManager;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
 import java.util.Locale;
 
 import io.fabric.sdk.android.Fabric;
 
-import net.danlew.android.joda.JodaTimeAndroid;;
+;
 
 //import com.bugfender.sdk.Bugfender;
 

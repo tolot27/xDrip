@@ -3,15 +3,16 @@ package com.eveningoutpost.dexdrip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
-import android.databinding.BindingAdapter;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.BindingAdapter;
 
 import com.eveningoutpost.dexdrip.Models.JoH;
 

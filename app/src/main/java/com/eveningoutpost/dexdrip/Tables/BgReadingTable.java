@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.eveningoutpost.dexdrip.BaseListActivity;
 import com.eveningoutpost.dexdrip.Models.BgReading;

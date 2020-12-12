@@ -4,10 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
-import android.support.annotation.StringRes;
 import android.view.View;
+
+import androidx.annotation.StringRes;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableList;
 
 import com.eveningoutpost.dexdrip.BR;
 import com.eveningoutpost.dexdrip.Models.UserError;
@@ -25,12 +26,9 @@ import static com.eveningoutpost.dexdrip.ui.helpers.UiHelper.convertDpToPixel;
 
 /**
  * Created by jamorham on 20/12/2017.
- *
+ * <p>
  * Guides the user through the process of selecting a source from a hierarchical menu.
- *
  */
-
-import static com.eveningoutpost.dexdrip.xdrip.gs;
 public class SourceWizard {
     @SuppressLint("StaticFieldLeak")
     private static final String TAG = "SourceWizard";

@@ -6,15 +6,15 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.provider.BaseColumns;
-import android.support.annotation.NonNull;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
-//KS import com.eveningoutpost.dexdrip.GcmActivity;
 import com.activeandroid.util.SQLiteUtils;
 import com.eveningoutpost.dexdrip.Home;
 import com.eveningoutpost.dexdrip.ImportedLibraries.dexcom.records.CalRecord;
@@ -26,7 +26,6 @@ import com.eveningoutpost.dexdrip.UtilityModels.CalibrationSendQueue;
 import com.eveningoutpost.dexdrip.UtilityModels.CollectionServiceStarter;
 import com.eveningoutpost.dexdrip.UtilityModels.Constants;
 import com.eveningoutpost.dexdrip.UtilityModels.Notifications;
-//KS import com.eveningoutpost.dexdrip.calibrations.PluggableCalibration;
 import com.eveningoutpost.dexdrip.UtilityModels.Pref;
 import com.eveningoutpost.dexdrip.xdrip;
 import com.google.gson.Gson;
@@ -38,6 +37,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+//KS import com.eveningoutpost.dexdrip.GcmActivity;
+//KS import com.eveningoutpost.dexdrip.calibrations.PluggableCalibration;
 
 //KS import static com.eveningoutpost.dexdrip.calibrations.PluggableCalibration.newFingerStickData;
 

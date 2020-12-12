@@ -4,9 +4,10 @@ import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.annotation.StringRes;
 import android.text.SpannableString;
+
+import androidx.annotation.RequiresApi;
+import androidx.annotation.StringRes;
 
 import com.eveningoutpost.dexdrip.Models.JoH;
 import com.eveningoutpost.dexdrip.Models.UserError.Log;

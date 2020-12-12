@@ -9,12 +9,13 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.util.SparseArray;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.eveningoutpost.dexdrip.ErrorsActivity;
 import com.eveningoutpost.dexdrip.GcmActivity;
@@ -26,7 +27,6 @@ import com.eveningoutpost.dexdrip.UtilityModels.Pref;
 import com.eveningoutpost.dexdrip.UtilityModels.ShotStateStore;
 import com.eveningoutpost.dexdrip.UtilityModels.VehicleMode;
 import com.eveningoutpost.dexdrip.utils.PowerStateReceiver;
-import com.eveningoutpost.dexdrip.utils.WebAppHelper;
 import com.eveningoutpost.dexdrip.xdrip;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;

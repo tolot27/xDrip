@@ -1,7 +1,5 @@
 package com.eveningoutpost.dexdrip;
 
-import android.R.integer;
-
 /**
  * Created by jamorham on 11/01/16.
  */
@@ -56,7 +54,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static android.support.v4.content.WakefulBroadcastReceiver.completeWakefulIntent;
+import static androidx.legacy.content.WakefulBroadcastReceiver.completeWakefulIntent;
 import static com.eveningoutpost.dexdrip.Models.JoH.isAnyNetworkConnected;
 import static com.eveningoutpost.dexdrip.Models.JoH.showNotification;
 

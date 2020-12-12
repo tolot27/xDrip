@@ -3,15 +3,15 @@ package com.eveningoutpost.dexdrip.Tables;
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.SimpleCursorAdapter;
 
 import com.activeandroid.Cache;
-//import com.eveningoutpost.dexdrip.NavigationDrawerFragment;
 import com.eveningoutpost.dexdrip.R;
 
 import java.util.ArrayList;
+
+//import com.eveningoutpost.dexdrip.NavigationDrawerFragment;
 
 
 public class SensorDataTable extends ListActivity {//implements NavigationDrawerFragment.NavigationDrawerCallbacks {

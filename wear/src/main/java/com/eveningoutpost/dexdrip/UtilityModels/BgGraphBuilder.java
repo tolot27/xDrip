@@ -5,14 +5,17 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.text.format.DateFormat;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.eveningoutpost.dexdrip.Home;
 import com.eveningoutpost.dexdrip.Models.BgReading;
 import com.eveningoutpost.dexdrip.Models.Calibration;
 import com.eveningoutpost.dexdrip.Models.JoH;
+import com.eveningoutpost.dexdrip.Models.UserError.Log;
+import com.eveningoutpost.dexdrip.xdrip;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -34,8 +37,6 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.Chart;
-import com.eveningoutpost.dexdrip.Models.UserError.Log;
-import com.eveningoutpost.dexdrip.xdrip;
 
 /**
  * Created by Emma Black on 11/15/14.

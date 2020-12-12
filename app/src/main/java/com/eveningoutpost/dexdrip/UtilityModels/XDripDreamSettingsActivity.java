@@ -1,7 +1,6 @@
 package com.eveningoutpost.dexdrip.UtilityModels;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.eveningoutpost.dexdrip.BaseAppCompatActivity;
 import com.eveningoutpost.dexdrip.databinding.ActivityXdripDreamSettingsBinding;
