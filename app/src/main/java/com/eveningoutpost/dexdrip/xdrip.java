@@ -14,6 +14,10 @@ import androidx.multidex.MultiDexApplication;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.crowdin.platform.Crowdin;
+import com.crowdin.platform.CrowdinConfig;
+import com.crowdin.platform.data.model.AuthConfig;
+import com.crowdin.platform.data.remote.NetworkType;
 import com.eveningoutpost.dexdrip.models.AlertType;
 import com.eveningoutpost.dexdrip.models.JoH;
 import com.eveningoutpost.dexdrip.models.Reminder;
@@ -83,6 +87,17 @@ public class xdrip extends MultiDexApplication {
         PreferenceManager.setDefaultValues(this, R.xml.pref_data_source, true);
         PreferenceManager.setDefaultValues(this, R.xml.xdrip_plus_defaults, true);
         PreferenceManager.setDefaultValues(this, R.xml.xdrip_plus_prefs, true);
+
+        Crowdin.init(this,
+                new CrowdinConfig.Builder()
+                        .withDistributionHash("4aa432b31173b34fd0881583rl1")
+                        .withScreenshotEnabled()
+                        .withSourceLanguage("en")
+                        .withAuthConfig(new AuthConfig("AyMRLYNTflxTpDnTWqjG", "rB3NoKynHh3lD9cafk83fWKOuQ6DN014uoGqhOcR", null))
+                        .withNetworkType(NetworkType.WIFI)                                           // optional
+//                        .withRealTimeUpdates()
+//                        .withUpdateInterval(900)
+                        .build());
 
         checkForcedEnglish(xdrip.context);
 
