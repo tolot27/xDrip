@@ -10,7 +10,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
-import com.eveningoutpost.dexdrip.Models.JoH;
+import com.eveningoutpost.dexdrip.models.JoH;
 
 //import android.support.v4.os.ResultReceiver;
 

@@ -1,4 +1,4 @@
-package com.eveningoutpost.dexdrip.Models;
+package com.eveningoutpost.dexdrip.models;
 
 import com.activeandroid.Model;
 import com.activeandroid.util.SQLiteUtils;

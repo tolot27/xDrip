@@ -1,7 +1,7 @@
-package com.eveningoutpost.dexdrip.UtilityModels;
+package com.eveningoutpost.dexdrip.utilitymodels;
 
 import com.eveningoutpost.dexdrip.Home;
-import com.eveningoutpost.dexdrip.Models.SensorSanity;
+import com.eveningoutpost.dexdrip.models.SensorSanity;
 
 import android.util.Log;
 

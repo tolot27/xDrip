@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.eveningoutpost.dexdrip.Models.UserError.Log;
+import com.eveningoutpost.dexdrip.models.UserError.Log;
 
 /**
  * Created by adrian on 30/06/15.

@@ -1,4 +1,4 @@
-package com.eveningoutpost.dexdrip.UtilityModels;
+package com.eveningoutpost.dexdrip.utilitymodels;
 
 /**
  * Created by Emma Black on 10/26/14.

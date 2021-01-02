@@ -14,9 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.databinding.BindingAdapter;
 
-import com.eveningoutpost.dexdrip.Models.JoH;
+import com.eveningoutpost.dexdrip.models.JoH;
 
-import static com.eveningoutpost.dexdrip.UtilityModels.Constants.FINAL_VISIBILITY_ID;
+import static com.eveningoutpost.dexdrip.utilitymodels.Constants.FINAL_VISIBILITY_ID;
 
 
 /**

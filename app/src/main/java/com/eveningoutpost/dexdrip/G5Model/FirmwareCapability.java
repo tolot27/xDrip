@@ -2,7 +2,7 @@ package com.eveningoutpost.dexdrip.G5Model;
 
 // jamorham
 
-import com.eveningoutpost.dexdrip.UtilityModels.Constants;
+import com.eveningoutpost.dexdrip.utilitymodels.Constants;
 import com.google.common.collect.ImmutableSet;
 
 import static com.eveningoutpost.dexdrip.G5Model.Ob1G5StateMachine.getRawFirmwareVersionString;

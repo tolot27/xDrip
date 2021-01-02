@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.eveningoutpost.dexdrip.Models.UserError;
+import com.eveningoutpost.dexdrip.models.UserError;
 import com.eveningoutpost.dexdrip.ShareModels.Models.ExistingFollower;
 import com.eveningoutpost.dexdrip.ShareModels.Models.InvitationPayload;
 import com.eveningoutpost.dexdrip.ShareModels.Models.ShareAuthenticationBody;

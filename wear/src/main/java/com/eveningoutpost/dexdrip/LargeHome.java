@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import androidx.core.content.ContextCompat;
 
-import com.eveningoutpost.dexdrip.Models.JoH;
+import com.eveningoutpost.dexdrip.models.JoH;
 import com.ustwo.clockwise.common.WatchMode;
 
 public class LargeHome extends BaseWatchFace {

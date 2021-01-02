@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
-import com.eveningoutpost.dexdrip.Models.JoH;
+import com.eveningoutpost.dexdrip.models.JoH;
 
 public class Agreement extends BaseAppCompatActivity {
 

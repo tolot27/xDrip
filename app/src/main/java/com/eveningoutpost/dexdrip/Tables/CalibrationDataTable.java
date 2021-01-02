@@ -14,11 +14,11 @@ import android.widget.TextView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.eveningoutpost.dexdrip.BaseListActivity;
-import com.eveningoutpost.dexdrip.Models.Calibration;
-import com.eveningoutpost.dexdrip.Models.JoH;
+import com.eveningoutpost.dexdrip.models.Calibration;
+import com.eveningoutpost.dexdrip.models.JoH;
 import com.eveningoutpost.dexdrip.NavigationDrawerFragment;
 import com.eveningoutpost.dexdrip.R;
-import com.eveningoutpost.dexdrip.UtilityModels.BgGraphBuilder;
+import com.eveningoutpost.dexdrip.utilitymodels.BgGraphBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

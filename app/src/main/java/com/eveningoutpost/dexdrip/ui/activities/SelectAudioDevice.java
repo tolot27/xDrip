@@ -6,9 +6,9 @@ import android.os.Handler;
 import androidx.databinding.ObservableField;
 
 import com.eveningoutpost.dexdrip.BaseAppCompatActivity;
-import com.eveningoutpost.dexdrip.Models.JoH;
+import com.eveningoutpost.dexdrip.models.JoH;
 import com.eveningoutpost.dexdrip.R;
-import com.eveningoutpost.dexdrip.UtilityModels.Pref;
+import com.eveningoutpost.dexdrip.utilitymodels.Pref;
 import com.eveningoutpost.dexdrip.databinding.ActivitySelectAudioDeviceBinding;
 import com.eveningoutpost.dexdrip.utils.HeadsetStateReceiver;
 

@@ -13,7 +13,7 @@ import android.util.LruCache;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
 
-import com.eveningoutpost.dexdrip.Models.UserError;
+import com.eveningoutpost.dexdrip.models.UserError;
 import com.eveningoutpost.dexdrip.xdrip;
 
 import lecho.lib.hellocharts.model.PointValue;

@@ -15,15 +15,15 @@ import androidx.annotation.NonNull;
 
 import com.eveningoutpost.dexdrip.G5Model.DexSyncKeeper;
 import com.eveningoutpost.dexdrip.G5Model.Ob1G5StateMachine;
-import com.eveningoutpost.dexdrip.Models.JoH;
-import com.eveningoutpost.dexdrip.Models.Sensor;
-import com.eveningoutpost.dexdrip.Models.Treatments;
-import com.eveningoutpost.dexdrip.Models.UserError;
-import com.eveningoutpost.dexdrip.Models.UserError.Log;
+import com.eveningoutpost.dexdrip.models.JoH;
+import com.eveningoutpost.dexdrip.models.Sensor;
+import com.eveningoutpost.dexdrip.models.Treatments;
+import com.eveningoutpost.dexdrip.models.UserError;
+import com.eveningoutpost.dexdrip.models.UserError.Log;
 import com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService;
-import com.eveningoutpost.dexdrip.UtilityModels.CollectionServiceStarter;
-import com.eveningoutpost.dexdrip.UtilityModels.Experience;
-import com.eveningoutpost.dexdrip.UtilityModels.Pref;
+import com.eveningoutpost.dexdrip.utilitymodels.CollectionServiceStarter;
+import com.eveningoutpost.dexdrip.utilitymodels.Experience;
+import com.eveningoutpost.dexdrip.utilitymodels.Pref;
 import com.eveningoutpost.dexdrip.profileeditor.DatePickerFragment;
 import com.eveningoutpost.dexdrip.profileeditor.ProfileAdapter;
 import com.eveningoutpost.dexdrip.profileeditor.TimePickerFragment;
@@ -37,7 +37,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static com.eveningoutpost.dexdrip.Home.startWatchUpdaterService;
-import static com.eveningoutpost.dexdrip.Models.BgReading.AGE_ADJUSTMENT_TIME;
+import static com.eveningoutpost.dexdrip.models.BgReading.AGE_ADJUSTMENT_TIME;
 import static com.eveningoutpost.dexdrip.xdrip.gs;
 
 public class StartNewSensor extends ActivityWithMenu {

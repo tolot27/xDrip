@@ -3,11 +3,11 @@ package com.eveningoutpost.dexdrip.G5Model;
 
 import android.text.SpannableString;
 
-import com.eveningoutpost.dexdrip.Models.Sensor;
+import com.eveningoutpost.dexdrip.models.Sensor;
 import com.eveningoutpost.dexdrip.R;
-import com.eveningoutpost.dexdrip.UtilityModels.Constants;
-import com.eveningoutpost.dexdrip.UtilityModels.Pref;
-import com.eveningoutpost.dexdrip.UtilityModels.StatusItem.Highlight;
+import com.eveningoutpost.dexdrip.utilitymodels.Constants;
+import com.eveningoutpost.dexdrip.utilitymodels.Pref;
+import com.eveningoutpost.dexdrip.utilitymodels.StatusItem.Highlight;
 import com.eveningoutpost.dexdrip.ui.helpers.Span;
 import com.eveningoutpost.dexdrip.utils.DexCollectionType;
 import com.eveningoutpost.dexdrip.xdrip;
@@ -21,13 +21,13 @@ import lombok.Getter;
 import lombok.val;
 
 import static com.eveningoutpost.dexdrip.G5Model.Ob1G5StateMachine.getFirmwareXDetails;
-import static com.eveningoutpost.dexdrip.Models.JoH.msSince;
-import static com.eveningoutpost.dexdrip.Models.JoH.roundDouble;
-import static com.eveningoutpost.dexdrip.Models.JoH.tsl;
+import static com.eveningoutpost.dexdrip.models.JoH.msSince;
+import static com.eveningoutpost.dexdrip.models.JoH.roundDouble;
+import static com.eveningoutpost.dexdrip.models.JoH.tsl;
 import static com.eveningoutpost.dexdrip.Services.G5BaseService.usingG6;
 import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.getTransmitterID;
 import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.usingNativeMode;
-import static com.eveningoutpost.dexdrip.UtilityModels.Constants.DAY_IN_MS;
+import static com.eveningoutpost.dexdrip.utilitymodels.Constants.DAY_IN_MS;
 import static com.eveningoutpost.dexdrip.utils.DexCollectionType.getDexCollectionType;
 import static com.eveningoutpost.dexdrip.utils.DexCollectionType.hasDexcomRaw;
 import static com.eveningoutpost.dexdrip.utils.DexCollectionType.hasLibre;

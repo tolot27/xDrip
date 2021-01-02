@@ -1,10 +1,9 @@
 package com.eveningoutpost.dexdrip.G5Model;
 
-import com.eveningoutpost.dexdrip.Models.JoH;
-import com.eveningoutpost.dexdrip.Models.UserError;
+import com.eveningoutpost.dexdrip.models.JoH;
+import com.eveningoutpost.dexdrip.models.UserError;
 import com.eveningoutpost.dexdrip.Services.G5CollectionService;
 
-import java.nio.ByteOrder;
 import java.util.Arrays;
 
 /**

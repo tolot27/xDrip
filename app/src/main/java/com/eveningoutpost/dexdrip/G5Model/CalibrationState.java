@@ -4,7 +4,7 @@ package com.eveningoutpost.dexdrip.G5Model;
 
 import android.util.SparseArray;
 
-import com.eveningoutpost.dexdrip.Models.UserError;
+import com.eveningoutpost.dexdrip.models.UserError;
 import com.google.common.collect.ImmutableSet;
 
 import lombok.Getter;

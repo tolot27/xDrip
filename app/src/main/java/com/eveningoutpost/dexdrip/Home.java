@@ -26,13 +26,6 @@ import android.os.PowerManager;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.speech.RecognizerIntent;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -53,50 +46,22 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.crashlytics.android.Crashlytics;
 import com.eveningoutpost.dexdrip.G5Model.Ob1G5StateMachine;
 import com.eveningoutpost.dexdrip.ImportedLibraries.usbserial.util.HexDump;
-import com.eveningoutpost.dexdrip.Models.ActiveBgAlert;
-import com.eveningoutpost.dexdrip.Models.ActiveBluetoothDevice;
-import com.eveningoutpost.dexdrip.Models.BgReading;
-import com.eveningoutpost.dexdrip.Models.BloodTest;
-import com.eveningoutpost.dexdrip.Models.Calibration;
-import com.eveningoutpost.dexdrip.Models.HeartRate;
-import com.eveningoutpost.dexdrip.Models.InsulinInjection;
-import com.eveningoutpost.dexdrip.Models.JoH;
-import com.eveningoutpost.dexdrip.Models.LibreBlock;
-import com.eveningoutpost.dexdrip.Models.ProcessInitialDataQuality;
-import com.eveningoutpost.dexdrip.Models.Sensor;
-import com.eveningoutpost.dexdrip.Models.StepCounter;
-import com.eveningoutpost.dexdrip.Models.Treatments;
-import com.eveningoutpost.dexdrip.Models.UserError;
 import com.eveningoutpost.dexdrip.Services.ActivityRecognizedService;
 import com.eveningoutpost.dexdrip.Services.DexCollectionService;
 import com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService;
 import com.eveningoutpost.dexdrip.Services.PlusSyncService;
 import com.eveningoutpost.dexdrip.Services.WixelReader;
-import com.eveningoutpost.dexdrip.UtilityModels.AlertPlayer;
-import com.eveningoutpost.dexdrip.UtilityModels.BgGraphBuilder;
-import com.eveningoutpost.dexdrip.UtilityModels.CollectionServiceStarter;
-import com.eveningoutpost.dexdrip.UtilityModels.CompatibleApps;
-import com.eveningoutpost.dexdrip.UtilityModels.Constants;
-import com.eveningoutpost.dexdrip.UtilityModels.Experience;
-import com.eveningoutpost.dexdrip.UtilityModels.Inevitable;
-import com.eveningoutpost.dexdrip.UtilityModels.Intents;
-import com.eveningoutpost.dexdrip.UtilityModels.JamorhamShowcaseDrawer;
-import com.eveningoutpost.dexdrip.UtilityModels.NanoStatus;
-import com.eveningoutpost.dexdrip.UtilityModels.NightscoutUploader;
-import com.eveningoutpost.dexdrip.UtilityModels.Notifications;
-import com.eveningoutpost.dexdrip.UtilityModels.PersistentStore;
-import com.eveningoutpost.dexdrip.UtilityModels.Pref;
-import com.eveningoutpost.dexdrip.UtilityModels.PrefsViewImpl;
-import com.eveningoutpost.dexdrip.UtilityModels.SendFeedBack;
-import com.eveningoutpost.dexdrip.UtilityModels.ShotStateStore;
-import com.eveningoutpost.dexdrip.UtilityModels.SourceWizard;
-import com.eveningoutpost.dexdrip.UtilityModels.StatusLine;
-import com.eveningoutpost.dexdrip.UtilityModels.UndoRedo;
-import com.eveningoutpost.dexdrip.UtilityModels.UpdateActivity;
-import com.eveningoutpost.dexdrip.UtilityModels.VoiceCommands;
 import com.eveningoutpost.dexdrip.calibrations.NativeCalibrationPipe;
 import com.eveningoutpost.dexdrip.calibrations.PluggableCalibration;
 import com.eveningoutpost.dexdrip.dagger.Injectors;
@@ -109,6 +74,20 @@ import com.eveningoutpost.dexdrip.insulin.InsulinManager;
 import com.eveningoutpost.dexdrip.insulin.MultipleInsulins;
 import com.eveningoutpost.dexdrip.insulin.inpen.InPenEntry;
 import com.eveningoutpost.dexdrip.insulin.pendiq.Pendiq;
+import com.eveningoutpost.dexdrip.models.ActiveBgAlert;
+import com.eveningoutpost.dexdrip.models.ActiveBluetoothDevice;
+import com.eveningoutpost.dexdrip.models.BgReading;
+import com.eveningoutpost.dexdrip.models.BloodTest;
+import com.eveningoutpost.dexdrip.models.Calibration;
+import com.eveningoutpost.dexdrip.models.HeartRate;
+import com.eveningoutpost.dexdrip.models.InsulinInjection;
+import com.eveningoutpost.dexdrip.models.JoH;
+import com.eveningoutpost.dexdrip.models.LibreBlock;
+import com.eveningoutpost.dexdrip.models.ProcessInitialDataQuality;
+import com.eveningoutpost.dexdrip.models.Sensor;
+import com.eveningoutpost.dexdrip.models.StepCounter;
+import com.eveningoutpost.dexdrip.models.Treatments;
+import com.eveningoutpost.dexdrip.models.UserError;
 import com.eveningoutpost.dexdrip.profileeditor.DatePickerFragment;
 import com.eveningoutpost.dexdrip.profileeditor.ProfileAdapter;
 import com.eveningoutpost.dexdrip.ui.BaseShelf;
@@ -121,6 +100,28 @@ import com.eveningoutpost.dexdrip.ui.dialog.HeyFamUpdateOptInDialog;
 import com.eveningoutpost.dexdrip.ui.dialog.QuickSettingsDialogs;
 import com.eveningoutpost.dexdrip.ui.graphic.ITrendArrow;
 import com.eveningoutpost.dexdrip.ui.graphic.TrendArrowFactory;
+import com.eveningoutpost.dexdrip.utilitymodels.AlertPlayer;
+import com.eveningoutpost.dexdrip.utilitymodels.BgGraphBuilder;
+import com.eveningoutpost.dexdrip.utilitymodels.CollectionServiceStarter;
+import com.eveningoutpost.dexdrip.utilitymodels.CompatibleApps;
+import com.eveningoutpost.dexdrip.utilitymodels.Constants;
+import com.eveningoutpost.dexdrip.utilitymodels.Experience;
+import com.eveningoutpost.dexdrip.utilitymodels.Inevitable;
+import com.eveningoutpost.dexdrip.utilitymodels.Intents;
+import com.eveningoutpost.dexdrip.utilitymodels.JamorhamShowcaseDrawer;
+import com.eveningoutpost.dexdrip.utilitymodels.NanoStatus;
+import com.eveningoutpost.dexdrip.utilitymodels.NightscoutUploader;
+import com.eveningoutpost.dexdrip.utilitymodels.Notifications;
+import com.eveningoutpost.dexdrip.utilitymodels.PersistentStore;
+import com.eveningoutpost.dexdrip.utilitymodels.Pref;
+import com.eveningoutpost.dexdrip.utilitymodels.PrefsViewImpl;
+import com.eveningoutpost.dexdrip.utilitymodels.SendFeedBack;
+import com.eveningoutpost.dexdrip.utilitymodels.ShotStateStore;
+import com.eveningoutpost.dexdrip.utilitymodels.SourceWizard;
+import com.eveningoutpost.dexdrip.utilitymodels.StatusLine;
+import com.eveningoutpost.dexdrip.utilitymodels.UndoRedo;
+import com.eveningoutpost.dexdrip.utilitymodels.UpdateActivity;
+import com.eveningoutpost.dexdrip.utilitymodels.VoiceCommands;
 import com.eveningoutpost.dexdrip.utils.ActivityWithMenu;
 import com.eveningoutpost.dexdrip.utils.BgToSpeech;
 import com.eveningoutpost.dexdrip.utils.DatabaseUtil;
@@ -135,6 +136,7 @@ import com.eveningoutpost.dexdrip.wearintegration.WatchUpdaterService;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.Target;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.bind.DateTypeAdapter;
@@ -168,11 +170,11 @@ import lecho.lib.hellocharts.view.PreviewLineChartView;
 import lombok.Getter;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static com.eveningoutpost.dexdrip.UtilityModels.ColorCache.X;
-import static com.eveningoutpost.dexdrip.UtilityModels.ColorCache.getCol;
-import static com.eveningoutpost.dexdrip.UtilityModels.Constants.DAY_IN_MS;
-import static com.eveningoutpost.dexdrip.UtilityModels.Constants.HOUR_IN_MS;
-import static com.eveningoutpost.dexdrip.UtilityModels.Constants.MINUTE_IN_MS;
+import static com.eveningoutpost.dexdrip.utilitymodels.ColorCache.X;
+import static com.eveningoutpost.dexdrip.utilitymodels.ColorCache.getCol;
+import static com.eveningoutpost.dexdrip.utilitymodels.Constants.DAY_IN_MS;
+import static com.eveningoutpost.dexdrip.utilitymodels.Constants.HOUR_IN_MS;
+import static com.eveningoutpost.dexdrip.utilitymodels.Constants.MINUTE_IN_MS;
 import static com.eveningoutpost.dexdrip.xdrip.gs;
 
 public class Home extends ActivityWithMenu implements ActivityCompat.OnRequestPermissionsResultCallback {
@@ -3496,7 +3498,7 @@ public class Home extends ActivityWithMenu implements ActivityCompat.OnRequestPe
 
     public static double convertToMgDlIfMmol(double value) {
         if (!Pref.getString("units", "mgdl").equals("mgdl")) {
-            return value * com.eveningoutpost.dexdrip.UtilityModels.Constants.MMOLL_TO_MGDL;
+            return value * com.eveningoutpost.dexdrip.utilitymodels.Constants.MMOLL_TO_MGDL;
         } else {
             return value; // no conversion needed
         }
@@ -3504,10 +3506,10 @@ public class Home extends ActivityWithMenu implements ActivityCompat.OnRequestPe
 
     public static void snackBar(int buttonString, String message, View.OnClickListener mOnClickListener, Activity activity) {
 
-        android.support.design.widget.Snackbar.make(
+        Snackbar.make(
 
                 activity.findViewById(android.R.id.content),
-                message, android.support.design.widget.Snackbar.LENGTH_LONG)
+                message, Snackbar.LENGTH_LONG)
                 .setAction(buttonString, mOnClickListener)
                 //.setActionTextColor(Color.RED)
                 .show();

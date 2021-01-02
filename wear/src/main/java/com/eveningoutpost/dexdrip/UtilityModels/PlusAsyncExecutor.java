@@ -1,11 +1,11 @@
-package com.eveningoutpost.dexdrip.UtilityModels;
+package com.eveningoutpost.dexdrip.utilitymodels;
 
 import android.os.PowerManager;
 import androidx.annotation.NonNull;
 
 import com.eveningoutpost.dexdrip.Home;
-import com.eveningoutpost.dexdrip.Models.JoH;
-import com.eveningoutpost.dexdrip.Models.UserError.Log;
+import com.eveningoutpost.dexdrip.models.JoH;
+import com.eveningoutpost.dexdrip.models.UserError.Log;
 
 import java.util.ArrayDeque;
 import java.util.HashMap;

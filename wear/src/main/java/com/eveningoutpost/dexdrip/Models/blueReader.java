@@ -1,14 +1,14 @@
-package com.eveningoutpost.dexdrip.Models;
+package com.eveningoutpost.dexdrip.models;
 
 import android.text.format.DateFormat;
 import com.eveningoutpost.dexdrip.Home;
 import java.nio.ByteBuffer;
 import java.util.Date;
 import com.eveningoutpost.dexdrip.Services.DexCollectionService;
-import com.eveningoutpost.dexdrip.Models.UserError.Log;
-import com.eveningoutpost.dexdrip.UtilityModels.Notifications;
-import com.eveningoutpost.dexdrip.UtilityModels.PersistentStore;
-import com.eveningoutpost.dexdrip.UtilityModels.Pref;
+import com.eveningoutpost.dexdrip.models.UserError.Log;
+import com.eveningoutpost.dexdrip.utilitymodels.Notifications;
+import com.eveningoutpost.dexdrip.utilitymodels.PersistentStore;
+import com.eveningoutpost.dexdrip.utilitymodels.Pref;
 import com.eveningoutpost.dexdrip.xdrip;
 import com.eveningoutpost.dexdrip.R;
 import java.io.BufferedWriter;

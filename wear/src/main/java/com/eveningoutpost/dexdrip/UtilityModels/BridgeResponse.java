@@ -1,4 +1,4 @@
-package com.eveningoutpost.dexdrip.UtilityModels;
+package com.eveningoutpost.dexdrip.utilitymodels;
 
 import java.nio.ByteBuffer;
 import java.util.LinkedList;

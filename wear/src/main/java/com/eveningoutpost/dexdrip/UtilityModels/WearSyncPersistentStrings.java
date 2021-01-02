@@ -1,4 +1,4 @@
-package com.eveningoutpost.dexdrip.UtilityModels;
+package com.eveningoutpost.dexdrip.utilitymodels;
 
 import com.eveningoutpost.dexdrip.G5Model.G6CalibrationParameters;
 

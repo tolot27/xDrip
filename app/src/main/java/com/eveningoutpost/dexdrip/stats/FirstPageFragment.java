@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.eveningoutpost.dexdrip.ImportedLibraries.dexcom.Dex_Constants;
-import com.eveningoutpost.dexdrip.Models.UserError.Log;
+import com.eveningoutpost.dexdrip.models.UserError.Log;
 import com.eveningoutpost.dexdrip.R;
 
 import java.text.DecimalFormat;

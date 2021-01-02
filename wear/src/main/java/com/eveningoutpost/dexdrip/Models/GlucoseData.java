@@ -1,5 +1,5 @@
 
-package com.eveningoutpost.dexdrip.Models;
+package com.eveningoutpost.dexdrip.models;
 
 import java.text.DecimalFormat;
 

@@ -2,9 +2,9 @@ package com.eveningoutpost.dexdrip.G5Model;
 
 // created by jamorham
 
-import com.eveningoutpost.dexdrip.Models.JoH;
-import com.eveningoutpost.dexdrip.Models.UserError;
-import com.eveningoutpost.dexdrip.UtilityModels.Pref;
+import com.eveningoutpost.dexdrip.models.JoH;
+import com.eveningoutpost.dexdrip.models.UserError;
+import com.eveningoutpost.dexdrip.utilitymodels.Pref;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

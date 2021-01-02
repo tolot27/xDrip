@@ -1,4 +1,4 @@
-package com.eveningoutpost.dexdrip.UtilityModels;
+package com.eveningoutpost.dexdrip.utilitymodels;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
