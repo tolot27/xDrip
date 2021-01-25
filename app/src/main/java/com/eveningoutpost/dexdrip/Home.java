@@ -184,6 +184,7 @@ public class Home extends ActivityWithMenu implements ActivityCompat.OnRequestPe
     private final static String TAG = "jamorham " + Home.class.getSimpleName();
     private final static boolean d = true;
     private static final int MAX_INSULIN_PROFILES = 3;
+    private static final int DRAW_OVER_OTHER_APP_PERMISSION = 103;
     public final int maxInsulinProfiles = MultipleInsulins.isEnabled() ? MAX_INSULIN_PROFILES : 0;
     public final static String START_SPEECH_RECOGNITION = "START_APP_SPEECH_RECOGNITION";
     public final static String START_TEXT_RECOGNITION = "START_APP_TEXT_RECOGNITION";
@@ -324,6 +325,7 @@ public class Home extends ActivityWithMenu implements ActivityCompat.OnRequestPe
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
+        Log.i("Crowdin", "Authorizing at onCreate ...");
         Crowdin.authorize(this);
     }
 
@@ -434,6 +436,20 @@ public class Home extends ActivityWithMenu implements ActivityCompat.OnRequestPe
             }
         }
 
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(mActivity)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Settings.canDrawOverlays(mActivity))
+                Log.i("Crowdin", "Drawing over other apps should be possible, in theory.");
+            else {
+                Log.i("Crowdin", "Requesting draw over other apps permission.");
+                // If the draw over permission is not available open the settings screen to grant the permission.
+                Intent myIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                myIntent.setData(Uri.parse("package:" + getPackageName()));
+                mActivity.startActivityForResult(myIntent, DRAW_OVER_OTHER_APP_PERMISSION);
+            }
+        } else {
+            Log.i("Crowdin", "Build.VERSION < Android M");
+        }
 
         // jamorham voice input et al
         this.voiceRecognitionText = (TextView) findViewById(R.id.treatmentTextView);
@@ -615,6 +631,7 @@ public class Home extends ActivityWithMenu implements ActivityCompat.OnRequestPe
         }
 
         currentBgValueText.setText(""); // clear any design prototyping default
+
     }
 
     private boolean firstRunDialogs(final boolean checkedeula) {
@@ -1908,6 +1925,10 @@ public class Home extends ActivityWithMenu implements ActivityCompat.OnRequestPe
             NightscoutUploader.launchDownloadRest();
             Pendiq.immortality(); // Experimental testing phase
         });
+
+        Log.i("Crowdin", "Authorizing2 ...");
+        Crowdin.authorize(this);
+
     }
 
     private void checkWifiSleepPolicy() {

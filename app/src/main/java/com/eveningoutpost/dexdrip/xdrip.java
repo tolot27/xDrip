@@ -88,6 +88,9 @@ public class xdrip extends MultiDexApplication {
         PreferenceManager.setDefaultValues(this, R.xml.xdrip_plus_defaults, true);
         PreferenceManager.setDefaultValues(this, R.xml.xdrip_plus_prefs, true);
 
+        checkForcedEnglish(xdrip.context);
+
+        Log.v("Crowdin", "Initializing ... ");
         Crowdin.init(this,
                 new CrowdinConfig.Builder()
                         .withDistributionHash("4aa432b31173b34fd0881583rl1")
@@ -95,11 +98,11 @@ public class xdrip extends MultiDexApplication {
                         .withSourceLanguage("en")
                         .withAuthConfig(new AuthConfig("AyMRLYNTflxTpDnTWqjG", "rB3NoKynHh3lD9cafk83fWKOuQ6DN014uoGqhOcR", null))
                         .withNetworkType(NetworkType.WIFI)                                           // optional
-//                        .withRealTimeUpdates()
-//                        .withUpdateInterval(900)
+                        .withRealTimeUpdates()
+                        .withUpdateInterval(900)
                         .build());
-
-        checkForcedEnglish(xdrip.context);
+        // Using system buttons to take screenshot automatically will upload them to crowdin.
+        Crowdin.registerScreenShotContentObserver(this);
 
         JoH.ratelimit("policy-never", 3600); // don't on first load
         new IdempotentMigrations(getApplicationContext()).performAll();
@@ -235,6 +238,7 @@ public class xdrip extends MultiDexApplication {
 
     // force language on oreo activities
     public static Context getLangContext(Context context) {
+        Context cont = context;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && Pref.getBooleanDefaultFalse("force_english")) {
                 final String forced_language = Pref.getString("forced_language", "en");
@@ -243,16 +247,13 @@ public class xdrip extends MultiDexApplication {
                 if (LOCALE == null) LOCALE = new Locale(forced_language);
                 Locale.setDefault(LOCALE);
                 config.setLocale(LOCALE);
-                context = context.createConfigurationContext(config);
+                cont = new ContextWrapper(context.createConfigurationContext(config));
                 //Log.d(TAG, "Sending language context for: " + LOCALE);
-                return new ContextWrapper(context);
-            } else {
-                return context;
             }
         } catch (Exception e) {
             Log.e(TAG, "Got exception in getLangContext: " + e);
-            return context;
         }
+        return Crowdin.wrapContext(cont);
     }
 
 
