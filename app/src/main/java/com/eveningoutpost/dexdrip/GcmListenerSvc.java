@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.util.Base64;
 
+import com.eveningoutpost.dexdrip.Services.ActivityRecognizedService;
 import com.eveningoutpost.dexdrip.models.BgReading;
 import com.eveningoutpost.dexdrip.models.BloodTest;
 import com.eveningoutpost.dexdrip.models.Calibration;
@@ -29,7 +30,6 @@ import com.eveningoutpost.dexdrip.models.TransmitterData;
 import com.eveningoutpost.dexdrip.models.Treatments;
 import com.eveningoutpost.dexdrip.models.UserError;
 import com.eveningoutpost.dexdrip.models.UserError.Log;
-import com.eveningoutpost.dexdrip.Services.ActivityRecognizedService;
 import com.eveningoutpost.dexdrip.utilitymodels.AlertPlayer;
 import com.eveningoutpost.dexdrip.utilitymodels.Constants;
 import com.eveningoutpost.dexdrip.utilitymodels.NanoStatus;
@@ -54,7 +54,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static androidx.legacy.content.WakefulBroadcastReceiver.completeWakefulIntent;
+//import static androidx.legacy.content.WakefulBroadcastReceiver.completeWakefulIntent;
 import static com.eveningoutpost.dexdrip.models.JoH.isAnyNetworkConnected;
 import static com.eveningoutpost.dexdrip.models.JoH.showNotification;
 
@@ -77,7 +77,7 @@ public class GcmListenerSvc extends JamListenerSvc {
         return l;
     }
 
-    @Override
+ /*   @Override
     protected Intent zzD(Intent inteceptedIntent) {
         // intercept and fix google play services wakelocking bug
         try {
@@ -91,7 +91,7 @@ public class GcmListenerSvc extends JamListenerSvc {
         }
         return super.zzD(inteceptedIntent);
     }
-
+*/
     @Override
     public void onSendError(String msgID, Exception exception) {
         boolean unexpected = true;
