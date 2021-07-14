@@ -36,6 +36,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -2241,7 +2242,7 @@ public class Preferences extends BasePreferenceActivity implements SearchPrefere
             // lazy instantiation
             if (searchConfiguration == null) {
                 try {
-                    searchConfiguration = new SearchConfiguration(getActivity());
+                    searchConfiguration = new SearchConfiguration((AppCompatActivity)getActivity());
                     searchConfiguration.setBreadcrumbsEnabled(true);
 
                     searchConfiguration.getKeysList().addAll(getAllPreferenceKeys(this.getPreferenceScreen()));
