@@ -1,4 +1,6 @@
 # Nightscout xDrip+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftolot27%2FxDrip.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftolot27%2FxDrip?ref=badge_shield)
+
 > Enhanced personal research version of xDrip
 
  <img align="right" src="Documentation/images/download-xdrip-plus-qr-code.png">
@@ -55,3 +57,7 @@ We are very happy if people want to collaborate with this project. Please contac
 ## Thanks
 None of this would be possible without all the hard work of the xDrip and Nightscout communities who have developed such excellent software and allowed us to build upon it.
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftolot27%2FxDrip.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftolot27%2FxDrip?ref=badge_large)
