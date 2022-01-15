@@ -1,6 +1,5 @@
 package com.eveningoutpost.dexdrip;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -40,9 +39,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import rx.Observable;
-import rx.functions.Action1;
-
+import io.reactivex.Single;
+import io.reactivex.functions.Consumer;
 
 public class ShareTest extends BaseActivity {
     private final static String TAG = ShareTest.class.getSimpleName();
@@ -89,7 +87,7 @@ public class ShareTest extends BaseActivity {
     public int successfulWrites;
 
     //RXJAVA FUN
-    Action1<byte[]> mDataResponseListener;
+    Consumer<byte[]> mDataResponseListener;
 
     public ReadDataShare mReadDataShare;
 
@@ -220,7 +218,7 @@ public class ShareTest extends BaseActivity {
                     Log.i(TAG, "Characteristic: " + value.toString());
                     Log.i(TAG, "Characteristic getstring: " + characteristic.getStringValue(0));
                     Log.i(TAG, "SUBSCRIBED TO RESPONSE LISTENER");
-                    Observable.just(characteristic.getValue()).subscribe(mDataResponseListener);
+                    Single.just(characteristic.getValue()).subscribe(mDataResponseListener);
                 } else {
                     Log.w(TAG, "Characteristic was null");
                 }
@@ -278,9 +276,9 @@ public class ShareTest extends BaseActivity {
 
     public void attemptRead() {
         final ReadDataShare readData = new ReadDataShare(this);
-        final Action1<Long> systemTimeListener = new Action1<Long>() {
+        final Consumer<Long> systemTimeListener = new Consumer<Long>() {
             @Override
-            public void call(Long s) {
+            public void accept(Long s) {
 
                 Log.d(TAG, "Made the full round trip, got " + s + " as the system time");
                 Log.d("SYSTTIME", "Made the full round trip, got " + s + " as the system time");
@@ -288,21 +286,21 @@ public class ShareTest extends BaseActivity {
                 Log.d(TAG, "Made the full round trip, got " + addativeSystemTimeOffset + " offset");
                 Log.d("SYSTTIME", "Made the full round trip, got " + addativeSystemTimeOffset + " offset");
 
-                final Action1<CalRecord[]> calRecordListener = new Action1<CalRecord[]>() {
+                final Consumer<CalRecord[]> calRecordListener = new Consumer<CalRecord[]>() {
                     @Override
-                    public void call(CalRecord[] calRecords) {
+                    public void accept(CalRecord[] calRecords) {
                         Log.d(TAG, "Made the full round trip, got " + calRecords.length + " Cal Records");
                         Calibration.create(calRecords, addativeSystemTimeOffset, getApplicationContext());
 
-                        final Action1<SensorRecord[]> sensorRecordListener = new Action1<SensorRecord[]>() {
+                        final Consumer<SensorRecord[]> sensorRecordListener = new Consumer<SensorRecord[]>() {
                             @Override
-                            public void call(SensorRecord[] sensorRecords) {
+                            public void accept(SensorRecord[] sensorRecords) {
                                 Log.d(TAG, "Made the full round trip, got " + sensorRecords.length + " Sensor Records");
                                 BgReading.create(sensorRecords, addativeSystemTimeOffset, getApplicationContext());
 
-                                final Action1<EGVRecord[]> evgRecordListener = new Action1<EGVRecord[]>() {
+                                final Consumer<EGVRecord[]> evgRecordListener = new Consumer<EGVRecord[]>() {
                                     @Override
-                                    public void call(EGVRecord[] egvRecords) {
+                                    public void accept(EGVRecord[] egvRecords) {
                                         Log.d(TAG, "Made the full round trip, got " + egvRecords.length + " EVG Records");
                                         BgReading.create(egvRecords, addativeSystemTimeOffset, getApplicationContext());
                                     }
@@ -472,7 +470,7 @@ public class ShareTest extends BaseActivity {
         }
     };
 
-    public void writeCommand(List<byte[]> packets, int aRecordType, Action1<byte[]> dataResponseListener) {
+    public void writeCommand(List<byte[]> packets, int aRecordType, Consumer<byte[]> dataResponseListener) {
         mDataResponseListener = dataResponseListener;
         successfulWrites = 0;
         writePackets = packets;

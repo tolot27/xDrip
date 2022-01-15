@@ -1,5 +1,6 @@
 package com.eveningoutpost.dexdrip.Services;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -45,8 +46,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import rx.Observable;
-import rx.functions.Action1;
+import io.reactivex.Single;
+import io.reactivex.functions.Consumer;
 
 @TargetApi(Build.VERSION_CODES.KITKAT)
 public class DexShareCollectionService extends Service {
@@ -85,7 +86,7 @@ public class DexShareCollectionService extends Service {
     public int successfulWrites;
 
     //RXJAVA FUN
-    Action1<byte[]> mDataResponseListener;
+    Consumer<byte[]> mDataResponseListener;
     public int currentGattTask;
     public int step;
     public List<byte[]> writePackets;
@@ -318,25 +319,25 @@ public class DexShareCollectionService extends Service {
         wakeLock1.acquire(60000);
         requestHighPriority();
         Log.d(TAG, "Attempting to read data");
-        final Action1<Long> systemTimeListener = new Action1<Long>() {
+        final Consumer<Long> systemTimeListener = new Consumer<Long>() {
             @Override
-            public void call(Long s) {
+            public void accept(Long s) {
                 if (s != null) {
                     Log.d(TAG, "Made the full round trip, got " + s + " as the system time");
                     final long additiveSystemTimeOffset = new Date().getTime() - s;
 
-                    final Action1<Long> dislpayTimeListener = new Action1<Long>() {
+                    final Consumer<Long> dislpayTimeListener = new Consumer<Long>() {
                         @Override
-                        public void call(Long s) {
+                        public void accept(Long s) {
                             if (s != null) {
                                 Log.d(TAG, "Made the full round trip, got " + s + " as the display time offset");
                                 final long addativeDisplayTimeOffset = additiveSystemTimeOffset - (s * 1000);
 
                                 Log.d(TAG, "Making " + addativeDisplayTimeOffset + " the the total time offset");
 
-                                final Action1<EGVRecord[]> evgRecordListener = new Action1<EGVRecord[]>() {
+                                final Consumer<EGVRecord[]> evgRecordListener = new Consumer<EGVRecord[]>() {
                                     @Override
-                                    public void call(EGVRecord[] egvRecords) {
+                                    public void accept(EGVRecord[] egvRecords) {
                                         if (egvRecords != null) {
                                             Log.d(TAG, "Made the full round trip, got " + egvRecords.length + " EVG Records");
                                             BgReading.create(egvRecords, additiveSystemTimeOffset, getApplicationContext());
@@ -356,9 +357,9 @@ public class DexShareCollectionService extends Service {
                                     }
                                 };
 
-                                final Action1<SensorRecord[]> sensorRecordListener = new Action1<SensorRecord[]>() {
+                                final Consumer<SensorRecord[]> sensorRecordListener = new Consumer<SensorRecord[]>() {
                                     @Override
-                                    public void call(SensorRecord[] sensorRecords) {
+                                    public void accept(SensorRecord[] sensorRecords) {
                                         if (sensorRecords != null) {
                                             Log.d(TAG, "Made the full round trip, got " + sensorRecords.length + " Sensor Records");
                                             BgReading.create(sensorRecords, additiveSystemTimeOffset, getApplicationContext());
@@ -368,9 +369,9 @@ public class DexShareCollectionService extends Service {
                                     }
                                 };
 
-                                final Action1<CalRecord[]> calRecordListener = new Action1<CalRecord[]>() {
+                                final Consumer<CalRecord[]> calRecordListener = new Consumer<CalRecord[]>() {
                                     @Override
-                                    public void call(CalRecord[] calRecords) {
+                                    public void accept(CalRecord[] calRecords) {
                                         if (calRecords != null) {
                                             Log.d(TAG, "Made the full round trip, got " + calRecords.length + " Cal Records");
                                             Calibration.create(calRecords, addativeDisplayTimeOffset, getApplicationContext());
@@ -544,7 +545,7 @@ public class DexShareCollectionService extends Service {
         }
     }
 
-    public void writeCommand(List<byte[]> packets, int aRecordType, Action1<byte[]> dataResponseListener) {
+    public void writeCommand(List<byte[]> packets, int aRecordType, Consumer<byte[]> dataResponseListener) {
         mDataResponseListener = dataResponseListener;
         successfulWrites = 0;
         writePackets = packets;
@@ -693,7 +694,7 @@ public class DexShareCollectionService extends Service {
                 Log.d(TAG, "mCharReceiveData Update");
                 byte[] value = characteristic.getValue();
                 if (value != null) {
-                    Observable.just(characteristic.getValue()).subscribe(mDataResponseListener);
+                    Single.just(characteristic.getValue()).subscribe(mDataResponseListener);
                 }
             } else if (charUuid.compareTo(mHeartBeatCharacteristic.getUuid()) == 0) {
                 long heartbeat = System.currentTimeMillis();
