@@ -128,6 +128,7 @@ public class DexShareCollectionService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         final PowerManager powerManager = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
+        @SuppressLint("InvalidWakeLockTag")
         final PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DexShareCollectionStart");
         wakeLock.acquire(40000);
         Log.d(TAG, "onStartCommand");
@@ -314,6 +315,7 @@ public class DexShareCollectionService extends Service {
 
     public void attemptRead() {
         PowerManager powerManager = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
+        @SuppressLint("InvalidWakeLockTag")
         final PowerManager.WakeLock wakeLock1 = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                 "ReadingShareData");
         wakeLock1.acquire(60000);
@@ -396,6 +398,7 @@ public class DexShareCollectionService extends Service {
 
     public synchronized boolean connect(final String address) {
         PowerManager powerManager = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
+        @SuppressLint("InvalidWakeLockTag")
         PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                 "DexShareCollectionStart");
         wakeLock.acquire(30000);
