@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">XDrip Prefs.</string>
+    <string name="app_name">xDrip Prefs.</string>
 
     <string-array name="chart_timeframe">
         <item>1 hour</item>
@@ -79,8 +79,8 @@
     <string name="notify_title">Location Permission</string>
     <string name="notify_text">xDrip requires Location access permission</string>
 
-    <string name="pref_xdrip_bt_settings">XDrip BT Settings</string>
-    <string name="pref_xdrip_g5_settings">XDrip G5 Settings</string>
+    <string name="pref_xdrip_bt_settings">xDrip BT Settings</string>
+    <string name="pref_xdrip_g5_settings">xDrip G5 Settings</string>
     <string name="pref_bt_collection_method">BT Collector</string>
     <string name="pref_summary_bt_collection_method">BT Collection Service</string>
     <string name="pref_enable_wearG5">Enable Collector</string>
@@ -142,7 +142,7 @@
     <string name="pref_summary_toggle_fontsize">Fontsize of small text in status and delta time</string>
     <string name="pref_show_opaque_card">Opaque Card</string>
     <string name="pref_summary_show_opaque_card">Show cards with opaque background</string>
-    <string name="pref_xdrip_watch_settings">XDrip Watchface Settings</string>
+    <string name="pref_xdrip_watch_settings">xDrip Watchface Settings</string>
     <string name="pref_chart_time">Chart Timeframe</string>
     <string name="pref_summary_chart_time">Chart Timeframe</string>
     <string name="pref_step_delay_time">Step Delay</string>
@@ -191,7 +191,7 @@
     <string name="cancel">Cancel</string>
     <string name="set">Set</string>
     <string name="alert_snoozed_by_phone">Alert snoozed by phone</string>
-    <string name="action_buttons_text">Enter Treatment, Refresh DB, Restart Collector, XDrip Prefs</string>
+    <string name="action_buttons_text">Enter Treatment, Refresh DB, Restart Collector, xDrip Prefs</string>
     <string name="table_buttons_text">View Blood tests, Treatments, Calibrations and BG data</string>
     <string name="sensor_table">Sensor Table</string>
     <string name="bg_readings_table">BgReadings Table</string>
