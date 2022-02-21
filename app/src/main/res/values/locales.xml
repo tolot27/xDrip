@@ -16,6 +16,7 @@
         <item>Norsk</item>
         <item>Polski</item>
         <item>Português</item>
+        <item>Português do Brasil</item>
         <item>Română</item>
         <item>Slovenčina</item>
         <item>Suomi</item>
@@ -41,12 +42,13 @@
         <item>no</item>
         <item>pl</item>
         <item>pt</item>
+        <item>pt-BR</item>
         <item>ro</item>
         <item>sk</item>
         <item>fi</item>
         <item>sv</item>
         <item>ru</item>
-        <item>iw</item>
+        <item>he</item>
         <item>ko</item>
         <item>uk</item>
     </string-array>
