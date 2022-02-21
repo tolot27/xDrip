@@ -4,10 +4,14 @@ package com.eveningoutpost.dexdrip.ui;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static java.nio.file.FileVisitResult.CONTINUE;
 
+import android.content.res.Configuration;
+
 import com.eveningoutpost.dexdrip.R;
 import com.eveningoutpost.dexdrip.RobolectricTestWithConfig;
 import com.eveningoutpost.dexdrip.xdrip;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.robolectric.RuntimeEnvironment;
 
@@ -28,16 +32,20 @@ import lombok.val;
 
 public class TranslationTest extends RobolectricTestWithConfig {
 
+    Configuration config;
+
+    @Before
+    public void setUp() {
+        config = xdrip.getAppContext().getResources().getConfiguration();
+    }
+
     /**
      * Check that MessageFormat strings are still working after resource translation
      */
-
-
     @Test
     public void testFormatStrings() throws IOException {
-        val config = xdrip.getAppContext().getResources().getConfiguration();
         val internal = xdrip.getAppContext().getResources().getStringArray(R.array.LocaleChoicesValues);
-        val extra = new String[]{"ar", "cs", "de", "el", "en", "es", "fi", "fr", "he", "hr", "it", "iw", "ja", "ko", "nb", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sl", "sv", "tr", "zh"};
+        val extra = new String[]{"ar", "cs", "de", "el", "en", "es", "fi", "fr", "he", "hr", "it", "ja", "ko", "nb", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sl", "sv", "tr", "zh"};
         val inset = "^values-";
         Set<String> locales = new TreeSet<>(Arrays.asList(internal));
         class ResourceLocaleParser implements FileVisitor<Path> {
@@ -75,10 +83,10 @@ public class TranslationTest extends RobolectricTestWithConfig {
         String result;
 
         for (val language : locales) {
-
             System.out.println("Trying choice patterns for language: " + language);
-            val langCountry = language.split("-");
-            config.setLocale(new Locale(langCountry[0], langCountry.length > 1 ? langCountry[1] : "", ""));
+            Locale locale = Locale.forLanguageTag(language);
+            assertWithMessage("Language tag does not match language").that(locale.toLanguageTag()).matches(language);
+            config.setLocale(locale);
             xdrip.getAppContext().getResources().updateConfiguration(config, xdrip.getAppContext().getResources().getDisplayMetrics());
 
             try {
@@ -87,7 +95,6 @@ public class TranslationTest extends RobolectricTestWithConfig {
                 result = MessageFormat.format(fmt, 123);
                 assertWithMessage("minutes_ago choice message format failed to contain value").that(result).contains("123");
             } catch (IllegalArgumentException e) {
-                restoreLocale();
                 throw new RuntimeException("Failed minutes ago test with language " + language + " with exception: " + e);
             }
 
@@ -97,18 +104,37 @@ public class TranslationTest extends RobolectricTestWithConfig {
                 result = MessageFormat.format(fmt, 123.4f);
                 assertWithMessage("expires_days choice message format failed to contain value").that(result).contains("123.4");
             } catch (IllegalArgumentException e) {
-                restoreLocale();
                 throw new RuntimeException("Failed expires days test with language " + language + " with exception: " + e);
             }
         }
 
-        restoreLocale();
     }
 
-    private void restoreLocale() {
+    @Test
+    public void testSublanguage() {
+        val extra = new String[]{"pt", "pt-BR"};
+        Set<String> locales = new TreeSet<>(Arrays.asList(extra));
+
+        for (val language : locales) {
+            System.out.println("Trying choice patterns for language: " + language);
+            Locale locale = Locale.forLanguageTag(language);
+            assertWithMessage("Language tag does not match language").that(locale.toLanguageTag()).matches(language);
+            config.setLocale(locale);
+            xdrip.getAppContext().getResources().updateConfiguration(config, xdrip.getAppContext().getResources().getDisplayMetrics());
+            try {
+                // check minutes ago days
+                String translated = xdrip.gs(R.string.settings);
+                assertWithMessage("settings choice message format failed to contain value").that(translated).matches("Definições");
+            } catch (IllegalArgumentException e) {
+                throw new RuntimeException("Failed settings test with language " + language + " with exception: " + e);
+            }
+        }
+    }
+
+    @After
+    public void tearDown() throws Exception {
         // restore after test
-        val config = xdrip.getAppContext().getResources().getConfiguration();
-        config.setLocale(new Locale("en", "", ""));
+        config.setLocale(new Locale("en"));
         xdrip.getAppContext().getResources().updateConfiguration(config, xdrip.getAppContext().getResources().getDisplayMetrics());
     }
 }
