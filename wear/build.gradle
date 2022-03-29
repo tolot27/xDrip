@@ -133,7 +133,7 @@ dependencies {
 
     // add missing JAXB dependencies for JDK 9+
     if (JavaVersion.current().ordinal() >= JavaVersion.VERSION_1_9.ordinal()) {
-        annotationProcessor 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
+        annotationProcessor 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'
     }
 
     implementation 'uk.com.robust-it:cloning:1.9.5'
