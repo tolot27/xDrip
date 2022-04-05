@@ -1,5 +1,29 @@
 package com.eveningoutpost.dexdrip.G5Model;
 
+import static com.eveningoutpost.dexdrip.G5Model.BluetoothServices.Authentication;
+import static com.eveningoutpost.dexdrip.G5Model.BluetoothServices.Control;
+import static com.eveningoutpost.dexdrip.G5Model.BluetoothServices.ProbablyBackfill;
+import static com.eveningoutpost.dexdrip.G5Model.FirmwareCapability.isTransmitterG6Rev2;
+import static com.eveningoutpost.dexdrip.Models.JoH.msSince;
+import static com.eveningoutpost.dexdrip.Models.JoH.pratelimit;
+import static com.eveningoutpost.dexdrip.Models.JoH.tsl;
+import static com.eveningoutpost.dexdrip.Services.G5BaseService.G5_BATTERY_FROM_MARKER;
+import static com.eveningoutpost.dexdrip.Services.G5BaseService.G5_BATTERY_LEVEL_MARKER;
+import static com.eveningoutpost.dexdrip.Services.G5BaseService.G5_BATTERY_MARKER;
+import static com.eveningoutpost.dexdrip.Services.G5BaseService.G5_BATTERY_WEARABLE_SEND;
+import static com.eveningoutpost.dexdrip.Services.G5BaseService.G5_FIRMWARE_MARKER;
+import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.android_wear;
+import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.getTransmitterID;
+import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.onlyUsingNativeMode;
+import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.resetSomeInternalState;
+import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.wear_broadcast;
+import static com.eveningoutpost.dexdrip.UtilityModels.BgGraphBuilder.DEXCOM_PERIOD;
+import static com.eveningoutpost.dexdrip.UtilityModels.Constants.DAY_IN_MS;
+import static com.eveningoutpost.dexdrip.UtilityModels.Constants.HOUR_IN_MS;
+import static com.eveningoutpost.dexdrip.UtilityModels.Constants.MINUTE_IN_MS;
+import static com.eveningoutpost.dexdrip.UtilityModels.Constants.SECOND_IN_MS;
+import static com.eveningoutpost.dexdrip.utils.bt.Helper.getStatusName;
+
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothGatt;
 import android.os.Build;
@@ -57,30 +81,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
 import io.reactivex.schedulers.Schedulers;
-
-import static com.eveningoutpost.dexdrip.G5Model.BluetoothServices.Authentication;
-import static com.eveningoutpost.dexdrip.G5Model.BluetoothServices.Control;
-import static com.eveningoutpost.dexdrip.G5Model.BluetoothServices.ProbablyBackfill;
-import static com.eveningoutpost.dexdrip.G5Model.FirmwareCapability.isTransmitterG6Rev2;
-import static com.eveningoutpost.dexdrip.Models.JoH.msSince;
-import static com.eveningoutpost.dexdrip.Models.JoH.pratelimit;
-import static com.eveningoutpost.dexdrip.Models.JoH.tsl;
-import static com.eveningoutpost.dexdrip.Services.G5BaseService.G5_BATTERY_FROM_MARKER;
-import static com.eveningoutpost.dexdrip.Services.G5BaseService.G5_BATTERY_LEVEL_MARKER;
-import static com.eveningoutpost.dexdrip.Services.G5BaseService.G5_BATTERY_MARKER;
-import static com.eveningoutpost.dexdrip.Services.G5BaseService.G5_BATTERY_WEARABLE_SEND;
-import static com.eveningoutpost.dexdrip.Services.G5BaseService.G5_FIRMWARE_MARKER;
-import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.android_wear;
-import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.getTransmitterID;
-import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.onlyUsingNativeMode;
-import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.resetSomeInternalState;
-import static com.eveningoutpost.dexdrip.Services.Ob1G5CollectionService.wear_broadcast;
-import static com.eveningoutpost.dexdrip.UtilityModels.BgGraphBuilder.DEXCOM_PERIOD;
-import static com.eveningoutpost.dexdrip.UtilityModels.Constants.DAY_IN_MS;
-import static com.eveningoutpost.dexdrip.UtilityModels.Constants.HOUR_IN_MS;
-import static com.eveningoutpost.dexdrip.UtilityModels.Constants.MINUTE_IN_MS;
-import static com.eveningoutpost.dexdrip.UtilityModels.Constants.SECOND_IN_MS;
-import static com.eveningoutpost.dexdrip.utils.bt.Helper.getStatusName;
 
 
 /**
@@ -1830,6 +1830,15 @@ public class Ob1G5StateMachine {
 
     public static boolean usingG6() {
         return Pref.getBooleanDefaultFalse("using_g6");
+    }
+
+    public static boolean isPhoneSlotInUse() {
+        if (usingG6()) {
+            final int specifiedSlot = Pref.getBooleanDefaultFalse("engineering_mode") ? Pref.getStringToInt("dex_specified_slot", -1) : -1;
+            return specifiedSlot == -1 || specifiedSlot == 2 || WholeHouse.isLive();
+        } else {
+            return WholeHouse.isLive();
+        }
     }
 
     private static boolean getEGlucose() {

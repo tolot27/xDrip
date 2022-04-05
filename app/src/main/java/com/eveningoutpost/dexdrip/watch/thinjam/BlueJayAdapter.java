@@ -4,6 +4,7 @@ package com.eveningoutpost.dexdrip.watch.thinjam;
 
 import android.preference.Preference;
 
+import com.eveningoutpost.dexdrip.G5Model.Ob1G5StateMachine;
 import com.eveningoutpost.dexdrip.Models.JoH;
 import com.eveningoutpost.dexdrip.R;
 import com.eveningoutpost.dexdrip.xdrip;
@@ -69,8 +70,12 @@ public class BlueJayAdapter {
                 if ((boolean) value) {
                     // setting to true
                     if (preference.getSharedPreferences().getBoolean("bluejay_run_phone_collector", true)) {
-                        JoH.static_toast_long("Must disable phone collector first!");
-                        return false;
+                        if (!Ob1G5StateMachine.isPhoneSlotInUse()) {
+                            return true;
+                        } else {
+                            JoH.static_toast_long("Must disable phone collector first!");
+                            return false;
+                        }
                     }
                     if (BlueJay.getMac() == null) {
                         JoH.static_toast_long("Needs a connected BlueJay");
