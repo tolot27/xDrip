@@ -224,7 +224,7 @@ dependencies {
 
     // add missing JAXB dependencies for JDK 9+
     if (JavaVersion.current().ordinal() >= JavaVersion.VERSION_1_9.ordinal()) {
-        annotationProcessor 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
+        annotationProcessor 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
         annotationProcessor 'org.glassfish.jaxb:jaxb-runtime:2.3.5'
     }
 
