@@ -74,9 +74,10 @@ public class TranslationTest extends RobolectricTestWithConfig {
 
         val resourcePath = RuntimeEnvironment.application
                 .getPackageResourcePath()
-                .replaceFirst("apk_for_local_test(?:\\\\|/).*", "merged-not-compiled-resources");
+                .replaceFirst("intermediates(?:\\\\|/).*", "preprocessor");
         val size = locales.size();
-        Files.walkFileTree(Paths.get(resourcePath), new ResourceLocaleParser());
+        // scan folder xDrip/app/build/preprocessor/replace/main/res for language resource strings
+        Files.walkFileTree(Paths.get(resourcePath, "replace", "main", "res"), new ResourceLocaleParser());
         assertWithMessage("No locales added from resources - this seems unlikely").that(locales.size()).isGreaterThan(size);
         locales.addAll(Arrays.asList(extra));
         String fmt;
