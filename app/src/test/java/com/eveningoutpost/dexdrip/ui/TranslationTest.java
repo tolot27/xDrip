@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import com.eveningoutpost.dexdrip.R;
 import com.eveningoutpost.dexdrip.RobolectricTestWithConfig;
 import com.eveningoutpost.dexdrip.xdrip;
+import com.eveningoutpost.dexdrip.BuildConfig;
 
 import org.junit.After;
 import org.junit.Before;
@@ -80,6 +81,9 @@ public class TranslationTest extends RobolectricTestWithConfig {
         Files.walkFileTree(Paths.get(resourcePath, "replace", "main", "res"), new ResourceLocaleParser());
         assertWithMessage("No locales added from resources - this seems unlikely").that(locales.size()).isGreaterThan(size);
         locales.addAll(Arrays.asList(extra));
+
+        System.out.println("Locales of resConfig: " + Arrays.toString(BuildConfig.LOCALES));
+
         String fmt;
         String result;
 

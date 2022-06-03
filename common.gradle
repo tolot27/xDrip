@@ -74,3 +74,13 @@ ext.generateVersionName = { ->
     stringBuilder.append((new Date()).format('yyyy.MM.dd'))
     return stringBuilder.toString()
 }
+
+ext {
+    // Include the default language and base languages for runtime use
+    supportedLocales = ['en', 'nb', 'bg', 'cs', 'de', 'et', 'es', 'fr', 'hr', 'it', 'hu', 'nl', 'no', 'pl', 'pt', 'pt-rBR', 'ro', 'sk', 'fi', 'sv', 'ru', 'he', 'ko', 'uk']
+    // Convert Android locale qualifier values to standard identifiers
+    // - Remove the 'r' before the region
+    // - Remove the 'b+' prefix on BPC 47 tags
+    // - Change '+' to '-' in BPC 47 tags
+    resToLoc = { res -> res.replaceAll(/-r/, '-').replaceAll(/^b\+/, '').replaceAll(/\+/, '-') }
+}

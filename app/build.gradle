@@ -198,7 +198,8 @@ android {
             buildConfigField "int", "buildVersion", "2021010100"
             buildConfigField "String", "buildUUID", "\"0f79a60a-5616-99be-8eb1-a430edcfd9fd\""
             buildConfigField "long", "buildTimestamp", "1609459200L"
-            resConfigs "en", "xxhdpi"
+            resConfigs supportedLocales//, "xxhdpi"
+            buildConfigField "String[]", "LOCALES", '{"' + supportedLocales.collect { resToLoc(it) }.join('", "') + '"}'
         }
 
         prod {
