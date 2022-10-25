@@ -263,7 +263,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-wearable:15.0.0'
     implementation 'com.google.android.gms:play-services-location:15.0.0'
     implementation "com.google.android.gms:play-services-gcm:15.0.0"
-    implementation "com.google.android.gms:play-services-oss-licenses:15.0.0"
+    implementation "com.google.android.gms:play-services-oss-licenses:17.0.0"
 
     implementation 'com.squareup.wire:wire-runtime:2.2.0'
     implementation 'com.squareup.okhttp:okhttp:2.7.5'
